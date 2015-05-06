@@ -1,0 +1,17 @@
+import sys
+sys.path.append('/usr/lib/python3.4/site-packages')
+sys.path
+exit
+for x=0; x<5; x++ :
+for(x=0; x<5; x++) :
+for i in range(15):
+e;
+[x : (for i in range(15): if i<5: x = -9/(i/100) elif (i>=5 and i<10): x=-9/(i/100)+1800*(i/100) -(4.5)/(i/100) elif: x=-9/(i/100)-4.5/(i/100)+(9/(5*(i/100)))  ]
+exit()
+for i in range(5):
+pass
+for i in range(5):
+pass
+for i in range(5):
+print(i)
+exit()
