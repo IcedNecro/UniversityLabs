@@ -275,18 +275,21 @@ void ls() {
 	fclose(_iso_file);
 }
 
-/*FILE * get_data_from_file(char * filename) {
+FILE * get_data_from_file(char * filename) {
 	FILE * _file_to_save = fopen(filename, "wb");
 	FILE * _iso_file = fopen(PATH_TO_FS, "rb+");
 	file_system_header * fs_header = get_file_system_header();
 
 	file_descriptor * fd = get_file_descriptor(filename);
-
+	printf("%s found under %i index\n", filename, fd->index);
 	int _data_offset = fs_header->_data_offset;
 
 	char * _file_data = malloc(fd->size);
 	char * _data_ptr = _file_data;
 	reference * _ref = &fd->reference;
+	size_t _file_size = fd->size;
+
+	printf("first index %i\n", _ref->next_index);
 	int j = 0;
 	while(_ref->next_index!=-1) {
 		int _next = _ref->next_index;
@@ -295,21 +298,22 @@ void ls() {
 		for(int i = _next; i<=_next+_num_of_blocks-1;j++,i++) {
 			fseek(_iso_file, _data_offset+(i*BLOCK_SIZE), SEEK_SET);
 			fread(_data_ptr, BLOCK_SIZE, 1, _iso_file);
+			printf("copying %i bytes from index %i\n",BLOCK_SIZE, i);
 			_data_ptr += BLOCK_SIZE;
 		}
 		int _offset_next_reference = fs_header->_data_offset+(_next+_num_of_blocks)*BLOCK_SIZE;
 
 		reference * _buf = malloc(sizeof(reference));
-
+		printf("next index %i\n", _buf->next_index);
 		fseek(_iso_file, _offset_next_reference, SEEK_SET);
 		fread(_buf, sizeof(reference), 1, _iso_file);
-		free(_ref);
+		//free(_ref);
 		_ref = _buf; 	
 	}
 	free(_ref);
 	free(fd);
 
-	fwrite(_file_data,_file_to_save, 1, _file_to_save);
+	fwrite(_file_data,_file_size, 1, _file_to_save);
 	return _file_to_save;
-}*/
+}
 

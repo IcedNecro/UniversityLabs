@@ -8,30 +8,20 @@
 
 int main(int argc, char const *argv[])
 {
-	initialize_ISO();
-	
-	FILE * f = fopen("test/1","r+");
-	FILE * f1 = fopen("test/2","r+");
-	FILE * f2 = fopen("test/3","r+");
-	FILE * f3 = fopen("test/6","rb+");
-	FILE * f4 = fopen("test/7","rb+");
-
-	put_data_to_file(f, "file_1.txt");
-	put_data_to_file(f1, "file_2.txt");
-	put_data_to_file(f2, "file_3.txt");
-	ls();
-/*	file_descriptor * d = get_file_descriptor("file_2.txt");
-	printf("%s\n", d->name);*/
-	rm("file_2.txt");
-	
-	put_data_to_file(f3, "file_4.txt");
-	put_data_to_file(f3, "file_5.txt");
-
-	ls();
-	rm("file_4.txt");
-	ls();
-	put_data_to_file(f4, "file_6.txt");
-	//rm("file_6")
-	ls();
-	return 0;
+	printf("%i %s\n",argc, argv[1]);
+	if(argc>1){ 
+		if(strcmp("mount", argv[1])==0) {
+			initialize_ISO();	
+		} else if(strcmp("ls", argv[1])==0) {
+			ls();		
+		} else if(strcmp("rm", argv[1])==0) {
+			rm(argv[2]);
+		} else if(strcmp("add", argv[1])==0) {
+			FILE * f = fopen(argv[2], "rb+");
+			put_data_to_file(f, argv[3]);
+		} else if(strcmp("cp", argv[1])==0) {
+			get_data_from_file(argv[2]);
+		}
+	} else
+	return 0;	
 }
